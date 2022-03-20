@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>Update User</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+	integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+	crossorigin="anonymous">
+<link rel="stylesheet" href="../css/shards.min.css">
+</head>
+<body>
+<div class="container">
+		<nav class="navbar navbar-light bg-light">
+			Hello,<span th:text="${username}" class="navbar-brand mb-0 h1"></span>
+			-- Income portal-- <a href="/logout">Logout</a>
+		</nav>
+	</div>
+	
+	<div class="container my-5">
+		<h4 class="mb-5">Delete payment slot</h4>
+		<div class="row">
+			<div class="col-md-6">
+				<form action="#"
+					th:action="@{/income/delete-paymentSlot/{id}(id=${paymentSlotDTO.id})}"
+					th:object="${paymentSlotDTO}" th:method="delete">
+					<div class="row">
+						<div class="form-group col-md-6">
+							<label for="date" class="col-form-label">Date</label> <input
+								type="date" th:field="*{date}" class="form-control" id="date"
+								placeholder="date">
+							<p th:if="${#fields.hasErrors('date')}" th:errors="*{date}"
+								class="text-danger"></p>
+
+						</div>
+
+						<div class="form-group col-md-6">
+							<label for="startTime" class="col-form-label">StartTime</label> <input
+								type="datetime-local" th:field="*{startTime}"
+								class="form-control" id="startTime" placeholder="startTime">
+							<span th:if="${#fields.hasErrors('startTime')}"
+								th:errors="*{startTime}" class="text-danger"></span>
+						</div>
+
+						<div class="form-group col-md-6">
+							<label for="endTime" class="col-form-label">EndTime</label> <input
+								type="datetime-local" th:field="*{endTime}" class="form-control"
+								id="endTime" placeholder="endTime"> <span
+								th:if="${#fields.hasErrors('endTime')}" th:errors="*{endTime}"
+								class="text-danger"></span>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="earning" class="col-form-label">Earning</label> <input
+								type="number" th:field="*{earning}" class="form-control"
+								id="earning" placeholder="earning">
+							<p th:if="${#fields.hasErrors('earning')}" th:errors="*{earning}"
+								class="text-danger"></p>
+						</div>
+
+						<div class="form-group col-md-6">
+							<label for="tipsWithTax" class="col-form-label">TipsWithTax</label>
+							<input type="number" th:field="*{tipsWithTax}"
+								class="form-control" id="tipsWithTax" placeholder="tipsWithTax">
+							<span th:if="${#fields.hasErrors('tipsWithTax')}"
+								th:errors="*{tipsWithTax}" class="text-danger"></span>
+						</div>
+
+						<div class="form-group col-md-6">
+							<label for="tipsInHand" class="col-form-label">TipsInHand</label>
+							<input type="number" th:field="*{tipsInHand}"
+								class="form-control" id="tipsInHand" placeholder="tipsInHand">
+							<span th:if="${#fields.hasErrors('tipsInHand')}"
+								th:errors="*{tipsInHand}" class="text-danger"></span>
+						</div>
+
+						<div class="form-group col-md-6">
+							<label for="noOfDelivery" class="col-form-label">NoOfDelivery</label>
+							<input type="number" th:field="*{noOfDelivery}"
+								class="form-control" id="noOfDelivery"
+								placeholder="noOfDelivery"> <span
+								th:if="${#fields.hasErrors('noOfDelivery')}"
+								th:errors="*{noOfDelivery}" class="text-danger"></span>
+						</div>
+
+						<div class="form-group col-md-6">
+							<label for="distance" class="col-form-label">Distance</label> <input
+								type="number" th:field="*{distance}" class="form-control"
+								id="distance" placeholder="distance"> <span
+								th:if="${#fields.hasErrors('distance')}" th:errors="*{distance}"
+								class="text-danger"></span>
+						</div>
+						<div th:if="${#fields.hasErrors('global')}">							
+							<p th:each="err : ${#fields.errors('global')}" th:text="${err}"
+								class="text-danger" />
+						</div>
+
+					</div>
+					<span class="text-danger"> Are sure you want to delete this payment slot?</span>
+					<div class="row">
+					
+						<div class="col-md-4 mt-5">
+							<input type="submit" class="btn btn-primary" value="Delete User">
+						</div>
+						
+						<div class="col-md-4 mt-5">
+							<a th:href="@{/income/paymentslot-home}"><input
+								type="button" class="btn btn-primary" value="Cancel" style="height:38px;width:140px"></a>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

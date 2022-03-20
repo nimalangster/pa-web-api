@@ -1,0 +1,46 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Registration page</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+	<body>
+		<div align="center" class="col-md-12">
+			<h2>Welcome to Student registration page</h2>
+			<div class="col-md-6">
+				<form action="#" th:action="@{/save-paymentslot}" th:object="${paymentSlotDTO}" method="post">
+					<div class="form-group">
+						<label for="name">Earning:</label> 
+						<input type="number" class="form-control" id="earning" th:field="*{earning}">
+						<p class="alert alert-danger" th:if="${#fields.hasErrors('earning')}" th:errors="*{earning}">
+					</div>
+					<div class="form-group">
+						<label for="tipsWithTax">Tips With Tax:</label> 
+						<input type="number" class="form-control" id="tipsWithTax" th:field="*{tipsWithTax}">
+						<p class="alert alert-danger" th:if="${#fields.hasErrors('tipsWithTax')}" th:errors="*{tipsWithTax}" />
+					</div>
+					<div class="form-group">
+						<label for="tipsInHand">Tips In Hand:</label> 
+						<input type="number" class="form-control" id="tipsInHand" th:field="*{tipsInHand}" />
+						<p class="alert alert-danger" th:if="${#fields.hasErrors('tipsInHand')}" th:errors="*{tipsInHand}" />
+					</div>
+					<div class="form-group">
+						<label for="noOfDelivery">No Of Delivery:</label> 
+						<input type="number" class="form-control" id="noOfDelivery" th:field="*{noOfDelivery}" />
+						<p class="alert alert-danger" th:if="${#fields.hasErrors('noOfDelivery')}" th:errors="*{noOfDelivery}" />
+					</div>
+					<div class="form-group">
+						<label for="distance">Distance:</label> 
+						<input type="number" class="form-control" id="distance" th:field="*{distance}" />
+						<p class="alert alert-danger" th:if="${#fields.hasErrors('distance')}" th:errors="*{distance}" />
+					</div>
+					<div class="form-group">
+						<button type="submit" class="btn btn-primary">Submit</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>

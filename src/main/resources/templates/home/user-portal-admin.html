@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: headerFragment">
+</head>
+<body>
+	<div id="container">
+		<h1>
+			Hello, <span th:text="${username}">-- Welcome to your admin portal--</span>.
+				Welcome to your admin portal
+		</h1>
+		<table class="table table-striped">
+			<thead>
+				<tr>					
+					<th> <a th:href="@{/users-info}"> Your details </a></th>
+					<th> <a th:href="@{/income/paymentslot-home}"> Income </a></th>
+					<th> <a th:href="@{/health/health-home}"> Health  </a></th>
+					<th> <a th:href="@{/reminders/reminders-home}"> Reminders </a></th>
+					<th> <a th:href="@{/student}"> Other </a></th>
+				</tr>
+			</thead>
+			<tbody>
+				
+			</tbody>
+		</table>
+		<div id="pagefoot" th:include="layout :: footerFragment">Footer
+		</div>
+		<a href="/logout">Logout</a>
+	</div>
+	<!-- container -->
+</body>
+</html>

@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: headerFragment">
+</head>
+<body>
+	<div class="container">
+	<div class="well text-center"><h5>
+				
+					Hello,
+					<span th:text="${username}"></span> -- Welcome to your Income
+					portal--
+					<a href="/logout">Logout</a>
+				
+			</h5>
+		<h2>Personnel Assistant Application</h2><table class="table table-striped">
+			<thead>
+				<tr>
+					
+					<th> <a th:href="@{/users-info}"> Your details </a></th>
+					<th> <a th:href="@{/income/paymentslot-home}"> Income </a></th>
+					<th> <a th:href="@{/health/health-Home}"> Health  </a></th>
+					<th> <a th:href="@{/reminders/reminders-Home}"> Reminders </a></th>
+					<th> <a th:href="@{/student}"> Other </a></th>
+				</tr>
+			</thead>
+			<tbody>
+				
+			</tbody>
+		</table>
+	</div>
+	</div>
+
+	<div class="container text-center">
+		<h1>User Details</h1>
+		<form action="#" th:action="@{/register}" method="post"
+			th:object="${user}">
+
+			<label>Realm name:</label> <span th:text="${realmname}"></span><br />
+
+			<label>First name:</label> <span th:text="${firstname}"></span><br />
+
+			<label>Last name:</label> <span th:text="${familyname}"></span><br />
+
+			<label>User name:</label> <span th:text="${username}"></span><br /> <label>Email:</label>
+			<span th:text="${email}"></span><br /> <label>User-id:</label> <span
+				th:text="${userid}"></span><br />
+
+			<button type="submit">Register</button>
+		</form>
+
+		<div class="well">
+			<div id="pagefoot" th:include="layout :: footerFragment">Footer
+			</div>
+
+		</div>
+	</div>
+	<!-- container -->
+</body>
+</html>

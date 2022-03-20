@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: headerFragment">
+</head>
+<body>
+	<div class="container">
+	<div class="well text-center"><h5>
+				
+					Hello,
+					<span th:text="${username}"></span> -- Welcome to your Income
+					portal--
+					<a href="/logout">Logout</a>
+				
+			</h5>
+		<h2>Personnel Assistant Application</h2><table class="table table-striped">
+			<thead>
+				<tr>
+					
+					<th> <a th:href="@{/users-info}"> Your details </a></th>
+					<th> <a th:href="@{/income/paymentslot-home}"> Income </a></th>
+					<th> <a th:href="@{/health/health-Home}"> Health  </a></th>
+					<th> <a th:href="@{/reminders/reminders-Home}"> Reminders </a></th>
+					<th> <a th:href="@{/student}"> Other </a></th>
+				</tr>
+			</thead>
+			<tbody>
+				
+			</tbody>
+		</table>
+	</div>
+	</div>
+	<div class="container text-center">
+		<div class="well">
+		<div id="pagefoot" th:include="layout :: footerFragment">Footer
+		</div>		
+	</div>
+	</div>
+	<!-- container -->
+</body>
+</html>

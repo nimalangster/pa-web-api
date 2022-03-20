@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: headerFragment">
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>Users</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+	integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+	crossorigin="anonymous">
+<link rel="stylesheet" href="../css/shards.min.css">
+</head>
+<body>
+	<div class="container">
+	<div class="well text-center"><h5>
+				
+					Hello,
+					<span th:text="${username}"></span> -- Welcome to your Income
+					portal--
+					<a href="/logout">Logout</a>
+				
+			</h5>
+		<h2>Personnel Assistant Application</h2><table class="table table-striped">
+			<thead>
+				<tr>
+					
+					<th> <a th:href="@{/users-info}"> Your details </a></th>
+					<th> <a th:href="@{/income/paymentslot-home}"> Income </a></th>
+					<th> <a th:href="@{/health/health-Home}"> Health  </a></th>
+					<th> <a th:href="@{/reminders/reminders-Home}"> Reminders </a></th>
+					<th> <a th:href="@{/student}"> Other </a></th>
+				</tr>
+			</thead>
+			<tbody>
+				
+			</tbody>
+		</table>
+	</div>
+	</div>
+
+	<div class="container">
+		<div class="p-5 text-center bg-light">
+			<h4 class="mb-3">Income Management</h4>
+		</div>	
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th><a th:href="@{/income/paymentslot-home}"> Payment
+								slots</a></th>
+						<th><a th:href="@{/income/work-documents}"> Your
+								Documents </a></th>
+						<th><a th:href="@{/income/report/report-form}"> Reports </a></th>
+						<th><a th:href="@{/income/reminders-home}"> Reminders </a></th>
+						<th><a th:href="@{/income/other}"> Other </a></th>
+					</tr>
+				</thead>
+			</table>
+
+		</div>
+
+	</div>
+
+	</div>
+	<div class="container text-center">
+	<div class="well">
+			<h4 class="mb-3">Your Report</h4>
+		</div>	
+		</div>
+
+	<form action="#" th:action="@{/income/report/generate-report}"
+		th:object="${timePeriod}" method="post">
+		<div class="container my-2">
+			<h5 class="mb-1">Select the period</h5>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="row">
+						<div class="form-group col-md-4">
+							<label for="startDate" class="col-form-label">From Date:</label>
+							<input type="date" th:field="*{startDate}" class="form-control"
+								id="startDate" placeholder="startDate">
+							<p th:if="${#fields.hasErrors('startDate')}"
+								th:errors="*{startDate}" class="text-danger"></p>
+
+						</div>
+
+						<div class="form-group col-md-4">
+							<label for="endDate" class="col-form-label">To Date:</label> <input
+								type="date" th:field="*{endDate}" class="form-control"
+								id="endDate" placeholder="endDate">
+							<p th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}"
+								class="text-danger"></p>
+
+						</div>
+
+						<div class="form-group col-md-4">
+							<label for="date" class="col-form-label"> </label> <input
+								type="submit" class="btn btn-primary" value="Generate Report">
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</form>
+
+	<div th:switch="${reports}" class="container my-1">
+		<div class="row">
+			<div class="col-md-12">
+				<h4 th:case="null">No Reports yet!</h4>
+				<div th:case="*">
+					<h4 class="my-5">Average By Week day</h4>
+					<table class="table table-striped table-responsive-md">
+						<thead>
+							<tr>
+								<th>Weekday</th>
+								<th>Sum of Earning</th>
+								<th>Sum of Tips with Tax</th>
+								<th>Sum of Tips in hand</th>
+								<th>Average Earning</th>
+								<th>Average Tips with Tax</th>
+								<th>Average Tips in hand</th>
+								<th>Total count</th>
+								<th> Total Average Earning</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="report : ${reports}">
+								<td th:text="${report.weekDay}"></td>
+								<td th:text="${report.sumOfEarning}"></td>
+								<td th:text="${report.sumOfTipsWithTax}"></td>
+								<td th:text="${report.sumOfTipsInHand}"></td>
+								<td th:text="${report.avgSumOfEarning}"></td>
+								<td th:text="${report.avgTipsWithTax}"></td>
+								<td th:text="${report.avgTipsInHand}"></td>
+								<td th:text="${report.count}"></td>
+								<td th:text="${report.avgEarning}"></td>
+							</tr>
+						</tbody>
+					</table>
+
+				</div>
+				<div class="row">
+					<div class="col-md-4 mt-5">
+						<a th:href="@{/income/addpaymentslot}" class="btn btn-primary"><i
+							class="fas fa-user-plus ml-2"></i> Add Payment Slot</a>
+					</div>
+
+					<div class="col-md-4 mt-5">
+						<a th:href="@{../../home/user-portal}"><input type="button"
+							class="btn btn-primary" value="Back"
+							style="height: 38px; width: 140px"></a>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+
+
+</body>
+</html>
